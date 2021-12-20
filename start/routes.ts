@@ -27,3 +27,8 @@ Route.get('/', async () => {
 Route.get('posts', 'PostsController.index')
 Route.post('posts', 'PostsController.store')
 Route.delete('posts/:id', 'PostsController.destroy')
+
+Route.get('transaction', 'TransactionsController.index')
+Route.post('transaction', 'TransactionsController.store')
+Route.delete('transaction/:id', 'TransactionsController.destroy')
+Route.put('transaction/:id', 'TransactionsController.update')
