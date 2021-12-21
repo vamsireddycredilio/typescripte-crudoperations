@@ -24,11 +24,12 @@ Route.get('/', async () => {
   return { hello: 'world' }
 });
 
-Route.get('posts', 'PostsController.index')
-Route.post('posts', 'PostsController.store')
-Route.delete('posts/:id', 'PostsController.destroy')
+// Route.get('posts', 'PostsController.index')
+// Route.post('posts', 'PostsController.store')
+// Route.delete('posts/:id', 'PostsController.destroy')
 
 Route.get('transaction', 'TransactionsController.index')
 Route.post('transaction', 'TransactionsController.store')
 Route.delete('transaction/:id', 'TransactionsController.destroy')
 Route.put('transaction/:id', 'TransactionsController.update')
+Route.post('transaction/:uid', 'TransactionsController.show')

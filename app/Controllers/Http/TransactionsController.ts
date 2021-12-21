@@ -1,21 +1,29 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Transaction from 'App/Models/Transaction';
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class TransactionsController {
     public async index () {
-        return await Transaction.all()
+        return Transaction.all()
     }
       
-    public async show ({ params }: HttpContextContract) {
-        return await Transaction.find(params.id)
+    public async show ({ params, request }: HttpContextContract) {
+        // return await Transaction.find(params.id)
+        const data = request.only(['skip', 'limit']);
+        return Database
+                .from('transactions')
+                .where('user_id', params.uid)
+                .offset(data.skip)
+                .limit(data.limit)
     }
     public async store ({ request, response }: HttpContextContract) {
-        const data = request.only(['customerName', 'amount', 'description', 'type']);
+        const data = request.only(['customerName', 'amount', 'description', 'type', 'uid']);
         const post = {
             customerName: data.customerName,
             amount: data.amount,
             description: data.description,
-            type: data.type
+            type: data.type,
+            user_id: data.uid
         };
         await Transaction.create(post);
         return response.json({"message": "Record created successfully! "});
