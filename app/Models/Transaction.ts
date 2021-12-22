@@ -5,7 +5,9 @@ import {
   BelongsTo
 } from '@ioc:Adonis/Lucid/Orm';
 import Auth from 'App/Models/Auth';
+
 export default class Transaction extends BaseModel {
+  
   @belongsTo(() => Auth)
   public user: BelongsTo<typeof Auth>
 

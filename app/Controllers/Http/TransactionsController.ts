@@ -8,7 +8,7 @@ export default class TransactionsController {
     }
       
     public async show ({ params, request }: HttpContextContract) {
-        // return await Transaction.find(params.id)
+        // Finding with paginator
         const data = request.only(['skip', 'limit']);
         return Database
                 .from('transactions')

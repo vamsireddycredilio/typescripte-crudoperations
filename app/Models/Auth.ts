@@ -2,14 +2,19 @@ import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 import Transaction from 'App/Models/Transaction';
 import {
-  hasOne,
-  HasOne
+  // hasOne,
+  // HasOne,
+  hasMany,
+  HasMany
 } from '@ioc:Adonis/Lucid/Orm';
 
 export default class Auth extends BaseModel {
 
-  @hasOne(() => Transaction)
-  public profile: HasOne<typeof Transaction>
+  // @hasOne(() => Transaction)
+  // public transaction: HasOne<typeof Transaction>
+
+  @hasMany(() => Transaction)
+  public transaction: HasMany<typeof Transaction>
 
   @column({ isPrimary: true })
   public id: number
